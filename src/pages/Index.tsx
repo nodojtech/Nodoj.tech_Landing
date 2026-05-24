@@ -202,7 +202,7 @@ const CTASection = () => (
           Si estás interesado, tienes una idea o quieres solucionar un problema en tu negocio, hablemos. Estamos listos para ayudarte.
         </p>
         <Button variant="hero" size="lg" asChild>
-          <a href="mailto:contacto@nodoj.com">Escríbenos</a>
+          <a href="mailto:nodojtech@gmail.com">Escríbenos</a>
         </Button>
       </motion.div>
     </div>
