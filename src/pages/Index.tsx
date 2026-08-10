@@ -1,6 +1,8 @@
 /* v2 */
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { products } from "@/data/products";
 import logo from "@/assets/logo.png";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -141,26 +143,6 @@ const ProcessSection = () => (
   </section>
 );
 
-const products = [
-  {
-    name: "Operia",
-    desc: "Central de manejo de negocios con módulos de ventas, compras, proveedores y más. Todo lo que necesitas para administrar tu empresa en un solo lugar.",
-    tag: "ERP · Negocios",
-    demoUrl: "#",
-  },
-  {
-    name: "BoxFlow",
-    desc: "Aplicación web para manejo de gimnasios y boxes de crossfit. Agendamiento de clases, seguimiento de atletas y control de mensualidades.",
-    tag: "Fitness · Gestión",
-    demoUrl: "#",
-  },
-  {
-    name: "ClinicFlow",
-    desc: "Plataforma para registro de citas y seguimiento de pacientes. Versión Pro con historia clínica, manejo y privacidad de datos.",
-    tag: "Salud · Gestión",
-    demoUrl: "#",
-  },
-];
 
 const ProductsSection = () => (
   <section id="products" className="py-24 relative overflow-hidden">
@@ -168,9 +150,16 @@ const ProductsSection = () => (
     <div className="container">
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-16">
         <p className="text-primary font-heading text-sm tracking-[0.2em] uppercase mb-3">Lo que hemos construido</p>
-        <h2 className="font-heading text-3xl md:text-4xl font-bold">Nuestros Productos</h2>
+        <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+  	Nuestras Soluciones
+	</h2>
+
+	<p className="text-muted-foreground max-w-2xl mx-auto">
+  	Herramientas digitales creadas para resolver problemas reales,
+  	simplificar operaciones y ayudar a cada negocio a trabajar mejor.
+	</p>
       </motion.div>
-      <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {products.map((p, i) => (
           <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }}
             variants={fadeUp} custom={i}
@@ -178,10 +167,18 @@ const ProductsSection = () => (
           >
             <span className="text-xs font-heading text-primary tracking-wider uppercase">{p.tag}</span>
             <h3 className="font-heading text-2xl font-bold mt-3 mb-3">{p.name}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed text-justify mb-5">{p.desc}</p>
-            <Button variant="heroOutline" size="sm" asChild>
-              <a href={p.demoUrl}>Probar</a>
-            </Button>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">{p.shortDescription}</p>
+            <div className="flex flex-wrap gap-3">
+  		<Button variant="heroOutline" size="sm" asChild>
+    		  <Link to={`/soluciones/${p.slug}`}>Conocer más</Link>
+  	       </Button>
+
+  	       <Button variant="hero" size="sm" asChild>
+    		<Link to={`/demo?producto=${p.slug}`}>
+      		  Solicitar demo
+   		</Link>
+  	       </Button>
+	    </div>
           </motion.div>
         ))}
       </div>
