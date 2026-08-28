@@ -2,7 +2,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { getProductBySlug } from "@/data/products";
-import logo from "@/assets/logo.png";
+import BrandWordmark from "@/components/brand/BrandWordmark";
 
 const SolutionDetail = () => {
   const { slug } = useParams();
@@ -16,12 +16,7 @@ const SolutionDetail = () => {
     <main className="min-h-screen bg-background">
       <nav className="border-b border-border">
         <div className="container h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Nodo J" className="w-9 h-9" />
-            <span className="font-heading font-semibold">
-              Nodo <span className="text-primary">J</span>
-            </span>
-          </Link>
+          <BrandWordmark className="min-h-tap text-xl" />
 
           <Button variant="heroOutline" size="sm" asChild>
             <Link to="/demo">Solicitar demo</Link>

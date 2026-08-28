@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { getProductBySlug } from "@/data/products";
-import logo from "@/assets/logo.png";
+import BrandWordmark from "@/components/brand/BrandWordmark";
 
 const Demo = () => {
   const [searchParams] = useSearchParams();
@@ -16,12 +16,7 @@ const Demo = () => {
     <main className="min-h-screen bg-background">
       <nav className="border-b border-border">
         <div className="container h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Nodo J" className="w-9 h-9" />
-            <span className="font-heading font-semibold">
-              Nodo <span className="text-primary">J</span>
-            </span>
-          </Link>
+          <BrandWordmark className="min-h-tap text-xl" />
         </div>
       </nav>
 
