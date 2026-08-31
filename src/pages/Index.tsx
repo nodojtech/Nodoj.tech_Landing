@@ -11,6 +11,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { products } from "@/data/products";
 import BrandWordmark from "@/components/brand/BrandWordmark";
+import ProductLogo from "@/components/products/ProductLogo";
+import ProductHeroMedia from "@/components/products/ProductHeroMedia";
+import { whatsappUrl } from "@/data/contact";
+import { Instagram } from "lucide-react";
 
 const Navbar = () => (
   <nav className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
@@ -48,8 +52,16 @@ const Navbar = () => (
       </div>
 
       <Button variant="hero" size="sm" asChild>
-        <Link to="/demo">Agenda una llamada</Link>
-      </Button>
+  <a
+    href={whatsappUrl(
+      "Hola, vi la página de Nodo J y quisiera conversar sobre un proceso de mi negocio."
+    )}
+    target="_blank"
+    rel="noreferrer"
+  >
+    Habla con nosotros
+  </a>
+</Button>
     </div>
   </nav>
 );
@@ -570,47 +582,28 @@ const ProductsSection = () => (
               </span>
             </div>
 
-            {/* Product media slot */}
-            <div className="p-4 md:p-5">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface-2">
-                <div
-                  className="pointer-events-none absolute inset-0 bg-brand-grid opacity-25"
-                  aria-hidden="true"
-                />
+{/* Product media */}
+<div className="p-4 md:p-5">
+  <div className="relative">
+    <ProductHeroMedia
+      product={product}
+      className="aspect-[16/10]"
+      imageClassName="transition-transform duration-500 ease-brand group-hover:scale-[1.015]"
+    />
 
-                <div className="relative flex h-full flex-col justify-between p-5 md:p-6">
-                  <div className="flex items-start justify-between gap-6">
-                    <div>
-                      <p className="brand-kicker mb-3 text-primary">
-                        Producto
-                      </p>
-
-                      <p className="font-heading text-xl font-medium tracking-[-0.015em] text-foreground">
-                        {product.name}
-                      </p>
-                    </div>
-
-                    <span
-                      className="h-3 w-3 shrink-0 rounded-full bg-primary"
-                      aria-hidden="true"
-                    />
-                  </div>
-
-                  <div>
-                    <p className="max-w-[42ch] font-body text-sm leading-relaxed text-muted-foreground">
-                      Espacio reservado para captura o video real de la
-                      plataforma.
-                    </p>
-
-                    <div className="mt-5 grid grid-cols-3 gap-2">
-                      <div className="h-2 rounded-full bg-border-strong" />
-                      <div className="h-2 rounded-full bg-border" />
-                      <div className="h-2 rounded-full bg-border" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    {(product.brand?.logo || product.brand?.logoLight) && (
+      <div className="absolute bottom-4 left-4 max-w-[70%]">
+        <div className="flex min-h-10 items-center rounded-md border border-border bg-background/90 px-3 py-2 backdrop-blur-sm">
+          <ProductLogo
+            product={product}
+            className="max-h-6 max-w-[150px]"
+            fallbackClassName="text-sm"
+          />
+        </div>
+      </div>
+    )}
+  </div>
+</div>
 
             {/* Product content */}
             <div className="px-5 pb-6 pt-2 md:px-6 md:pb-7">
@@ -719,22 +712,30 @@ const CTASection = () => (
 
         <div className="flex flex-col items-start gap-4 lg:items-end">
           <Button variant="hero" size="lg" asChild>
-            <Link to="/demo">
-              Agenda una llamada
-              <ArrowRight
-                className="ml-1"
-                strokeWidth={2}
-                aria-hidden="true"
-              />
-            </Link>
-          </Button>
+  <a
+    href={whatsappUrl(
+      "Hola, vi la página de Nodo J. Hay un proceso de mi negocio que me gustaría mejorar y quisiera conversar con ustedes."
+    )}
+    target="_blank"
+    rel="noreferrer"
+  >
+    Escríbenos por WhatsApp
+  </a>
+</Button>
 
           <a
-            href="mailto:nodojtech@gmail.com"
-            className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
-          >
-            nodojtech@gmail.com
-          </a>
+  href={`mailto:${contact.email}`}
+  className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
+>
+  {contact.email}
+</a>
+
+<a
+  href={`tel:+${contact.phoneInternational}`}
+  className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
+>
+  {contact.phoneDisplay}
+</a>
         </div>
       </motion.div>
     </div>
@@ -744,7 +745,9 @@ const CTASection = () => (
 const Footer = () => (
   <footer className="bg-background">
     <div className="container py-12 md:py-14">
-      <div className="grid gap-10 border-b border-border pb-10 md:grid-cols-[1.4fr_0.8fr_0.8fr] md:gap-12">
+      <div className="grid gap-10 border-b border-border pb-10 md:grid-cols-[1.35fr_0.75fr_0.75fr_1fr] md:gap-12">
+        
+        {/* Marca */}
         <div>
           <BrandWordmark className="text-2xl" />
 
@@ -758,6 +761,7 @@ const Footer = () => (
           </p>
         </div>
 
+        {/* Soluciones */}
         <div>
           <p className="brand-kicker mb-5 text-muted-foreground">
             Soluciones
@@ -776,6 +780,7 @@ const Footer = () => (
           </div>
         </div>
 
+        {/* Empresa */}
         <div>
           <p className="brand-kicker mb-5 text-muted-foreground">
             Nodo J
@@ -797,22 +802,67 @@ const Footer = () => (
             </a>
 
             <Link
-              to="/demo"
-              className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
-            >
-              Agenda una llamada
-            </Link>
-
-            <a
-              href="mailto:nodojtech@gmail.com"
+              to="/contacto"
               className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
             >
               Contacto
+            </Link>
+
+            <a
+              href={whatsappUrl(
+                "Hola, vi la página de Nodo J y quisiera conversar sobre un proceso de mi negocio."
+              )}
+              target="_blank"
+              rel="noreferrer"
+              className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
+            >
+              Habla con nosotros
+            </a>
+          </div>
+        </div>
+
+        {/* Contacto */}
+        <div>
+          <p className="brand-kicker mb-5 text-muted-foreground">
+            Contacto
+          </p>
+
+          <div className="flex flex-col items-start gap-3">
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noreferrer"
+              className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
+            >
+              {contact.phoneDisplay}
+            </a>
+
+            <a
+              href={`mailto:${contact.email}`}
+              className="font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
+            >
+              {contact.email}
+            </a>
+
+            <a
+              href={contact.social.instagram.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-tap items-center gap-2 font-body text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground"
+            >
+              <Instagram
+                className="h-4 w-4"
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+
+              {contact.social.instagram.handle}
             </a>
           </div>
         </div>
       </div>
 
+      {/* Copyright */}
       <div className="flex flex-col gap-3 pt-6 font-body text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {new Date().getFullYear()} Nodo J. Todos los derechos reservados.
