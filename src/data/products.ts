@@ -1,3 +1,22 @@
+export type ProductScreenshot = {
+  src: string;
+  alt: string;
+  label?: string;
+};
+
+export type ProductBrand = {
+  logo?: string;
+  logoLight?: string;
+  icon?: string;
+};
+
+export type ProductMedia = {
+  heroImage?: string;
+  heroVideo?: string;
+  videoType?: "video/webm" | "video/mp4";
+  screenshots?: ProductScreenshot[];
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -6,27 +25,54 @@ export type Product = {
   shortDescription: string;
   status: "available" | "pilot" | "coming-soon";
   features: string[];
+
+  brand?: ProductBrand;
+  media?: ProductMedia;
 };
 
+
 export const products: Product[] = [
-  {
-    slug: "boxflow",
-    name: "BoxFlow",
-    tag: "Fitness · Gestión",
-    shortDescription:
-      "Gestión integral para gimnasios, boxes y centros de entrenamiento.",
-    description:
-      "Centraliza reservas, mensualidades, asistencia, clases y la relación con tus atletas desde una sola plataforma.",
-    status: "available",
-    features: [
-      "Reservas y gestión de clases",
-      "Control de mensualidades",
-      "Registro de asistencia",
-      "Gestión de atletas",
-      "Portal para clientes",
+ {
+  slug: "boxflow",
+  name: "BoxFlow",
+  tag: "Fitness · Gestión",
+  shortDescription:
+    "Gestión integral para gimnasios, boxes y centros de entrenamiento.",
+  description:
+    "Centraliza reservas, mensualidades, asistencia, clases y gestión de atletas desde una sola plataforma.",
+  status: "available",
+
+  features: [
+    "Reservas y clases",
+    "Control de mensualidades",
+    "Registro de asistencia",
+    "Gestión de atletas",
+    "Portal para clientes",
+  ],
+
+  brand: {
+    logo: "/media/products/boxflow/brand/logo-horizontal.png",
+    icon: "/media/products/boxflow/brand/icon.png",
+  },
+
+  media: {
+    heroImage: "/media/products/boxflow/screens/classes.jpg",
+
+    screenshots: [
+      {
+        src: "/media/products/boxflow/screens/admin.jpg",
+        alt: "Panel administrativo de BoxFlow",
+        label: "Panel administrativo",
+      },
+      {
+        src: "/media/products/boxflow/screens/athlete-profile.jpg",
+        alt: "Perfil de atleta en BoxFlow",
+        label: "Perfil del atleta",
+      },
     ],
   },
-  {
+},
+ {
     slug: "stockia",
     name: "Stockia",
     tag: "Inventario · Negocios",
@@ -42,6 +88,28 @@ export const products: Product[] = [
       "Gestión de clientes",
       "Reportes y cierres",
     ],
+brand: {
+  logo: "/media/products/stockia/brand/logo.svg",
+  logoLight: "/media/products/stockia/brand/logo-light.svg",
+  icon: "/media/products/stockia/brand/icon.png",
+},
+
+media: {
+  heroImage: "/media/products/stockia/screens/hero.webp",
+
+  screenshots: [
+    {
+      src: "/media/products/stockia/screens/dashboard.webp",
+      alt: "Panel principal de Stockia",
+      label: "Panel de operación",
+    },
+    {
+      src: "/media/products/stockia/screens/secondary.webp",
+      alt: "Gestión de inventario en Stockia",
+      label: "Inventario",
+    },
+  ],
+},
   },
 ];
 

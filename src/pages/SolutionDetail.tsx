@@ -2,7 +2,11 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { getProductBySlug } from "@/data/products";
-import logo from "@/assets/logo.png";
+import BrandWordmark from "@/components/brand/BrandWordmark";
+import ProductLogo from "@/components/products/ProductLogo";
+import ProductHeroMedia from "@/components/products/ProductHeroMedia";
+import ProductScreenshot from "@/components/products/ProductScreenshot";
+import { whatsappUrl } from "@/data/contact";
 
 const SolutionDetail = () => {
   const { slug } = useParams();
@@ -16,12 +20,7 @@ const SolutionDetail = () => {
     <main className="min-h-screen bg-background">
       <nav className="border-b border-border">
         <div className="container h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Nodo J" className="w-9 h-9" />
-            <span className="font-heading font-semibold">
-              Nodo <span className="text-primary">J</span>
-            </span>
-          </Link>
+          <BrandWordmark className="min-h-tap text-xl" />
 
           <Button variant="heroOutline" size="sm" asChild>
             <Link to="/demo">Solicitar demo</Link>
@@ -29,90 +28,227 @@ const SolutionDetail = () => {
         </div>
       </nav>
 
-      <section className="container py-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-primary font-heading text-sm tracking-[0.2em] uppercase mb-4"
+	<section className="container py-20 md:py-24">
+  <div className="mx-auto max-w-4xl text-center">
+    <motion.p
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.42,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="brand-kicker mb-6 text-primary"
+    >
+      {product.tag}
+    </motion.p>
+
+    {(product.brand?.logo ||
+  product.brand?.logoLight ||
+  product.brand?.icon) && (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.08,
+          duration: 0.42,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="mb-8 flex justify-center"
+      >
+        <div className="flex min-h-[96px] items-center justify-center rounded-xl border border-border bg-white px-8 py-5 shadow-sm">
+  <ProductLogo
+    product={product}
+    variant="logo"
+    preferLight={false}
+    className="max-h-14 max-w-[320px]"
+    fallback="none"
+  />
+</div>
+      </motion.div>
+    )}
+
+    <motion.h1
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.12,
+        duration: 0.42,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="font-heading text-h1 text-foreground"
+    >
+      {product.name}
+    </motion.h1>
+
+    <motion.p
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.18,
+        duration: 0.42,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="mx-auto mt-6 max-w-2xl font-body text-body-lg text-muted-foreground"
+    >
+      {product.description}
+    </motion.p>
+
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.24,
+        duration: 0.42,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="mt-9"
+    >
+      <Button variant="hero" size="lg" asChild>
+        <a
+          href={whatsappUrl(
+            `Hola, estoy interesado en ${product.name} y quisiera solicitar una demostración.`
+          )}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Solicitar demostración
+        </a>
+      </Button>
+    </motion.div>
+  </div>
+</section>
+
+<section className="container pb-20 md:pb-24">
+  <div className="mx-auto max-w-5xl">
+
+    {/* Evidencia principal del producto */}
+    <ProductHeroMedia
+      product={product}
+      className="aspect-video shadow-md"
+    />
+
+    {/* Funcionalidades */}
+    <div className="mt-16 grid gap-12 md:grid-cols-2 md:items-start">
+      <div>
+        <p className="brand-kicker mb-4 text-primary">
+          Funcionalidades
+        </p>
+
+        <h2 className="font-heading text-h2 text-foreground">
+          Todo lo esencial en un solo lugar.
+        </h2>
+
+        <p className="mt-5 font-body text-body leading-relaxed text-muted-foreground">
+          {product.shortDescription}
+        </p>
+      </div>
+
+      <div className="space-y-3">
+        {product.features.map((feature) => (
+          <div
+            key={feature}
+            className="rounded-lg border border-border bg-card p-4 font-body text-sm text-foreground"
           >
-            {product.tag}
-          </motion.p>
+            <span
+              className="mr-3 inline-block h-1.5 w-1.5 rounded-full bg-primary align-middle"
+              aria-hidden="true"
+            />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="font-heading text-5xl md:text-7xl font-bold mb-6"
-          >
-            {product.name}
-          </motion.h1>
+            {feature}
+          </div>
+        ))}
+      </div>
+    </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10"
-          >
-            {product.description}
-          </motion.p>
+    {/* Galería: solo existe si tenemos screenshots declarados */}
+    {product.media?.screenshots &&
+      product.media.screenshots.length > 0 && (
+        <div className="mt-20 border-t border-border pt-16">
+          <div className="mb-10">
+            <p className="brand-kicker mb-4 text-primary">
+              Producto
+            </p>
 
-          <Button variant="hero" size="lg" asChild>
-            <Link to={`/demo?producto=${product.slug}`}>
-              Solicitar una demostración
-            </Link>
-          </Button>
-        </div>
-      </section>
+            <h2 className="font-heading text-h2 text-foreground">
+              Así funciona {product.name}.
+            </h2>
 
-      <section className="container pb-24">
-        <div className="max-w-5xl mx-auto">
-          <div className="rounded-2xl border border-primary/20 bg-card min-h-[360px] flex items-center justify-center p-10 mb-20">
-            <div className="text-center max-w-xl">
-              <p className="text-primary font-heading text-sm uppercase tracking-[0.2em] mb-3">
-                Demostración
-              </p>
-
-              <h2 className="font-heading text-2xl font-bold mb-3">
-                Próximamente: recorrido visual de {product.name}
-              </h2>
-
-              <p className="text-muted-foreground">
-                Aquí incorporaremos un video corto y capturas reales para mostrar
-                cómo funciona la plataforma sin necesidad de iniciar sesión.
-              </p>
-            </div>
+            <p className="mt-4 max-w-[62ch] font-body text-body text-muted-foreground">
+              Una mirada a algunas de las herramientas que forman parte de la
+              plataforma.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div>
-              <p className="text-primary font-heading text-sm uppercase tracking-[0.2em] mb-3">
-                Funcionalidades
-              </p>
-
-              <h2 className="font-heading text-3xl font-bold mb-5">
-                Todo lo esencial en un solo lugar
-              </h2>
-
-              <p className="text-muted-foreground leading-relaxed">
-                {product.shortDescription}
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              {product.features.map((feature) => (
-                <div
-                  key={feature}
-                  className="rounded-lg border border-border bg-card p-4"
-                >
-                  <span className="text-primary mr-3">✓</span>
-                  {feature}
-                </div>
-              ))}
-            </div>
+          <div className="grid gap-8">
+            {product.media.screenshots.map((screenshot, index) => (
+              <motion.div
+                key={screenshot.src}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.42,
+                  delay: index * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                <ProductScreenshot screenshot={screenshot} />
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
+      )}
+  </div>
+</section>
+
+{product.media.screenshots.length > 0 && (
+  <section className="mt-20 border-t border-border pt-16">
+    <div className="mb-10">
+      <p className="brand-kicker mb-4 text-primary">
+        Producto
+      </p>
+
+      <h2 className="font-heading text-h2 text-foreground">
+        Así funciona {product.name}.
+      </h2>
+
+      <p className="mt-4 max-w-[62ch] font-body text-body text-muted-foreground">
+        Una mirada a algunas de las herramientas que forman parte de la
+        plataforma.
+      </p>
+    </div>
+
+    <div className="grid gap-8">
+      {product.media.screenshots.map((screenshot, index) => (
+        <motion.figure
+          key={screenshot.src}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.42,
+            delay: index * 0.08,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="overflow-hidden rounded-[20px] border border-border bg-card"
+        >
+          <img
+            src={screenshot.src}
+            alt={screenshot.alt}
+            loading="lazy"
+            className="w-full object-cover object-top"
+          />
+
+          {screenshot.label && (
+            <figcaption className="border-t border-border px-5 py-4 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
+              {screenshot.label}
+            </figcaption>
+          )}
+        </motion.figure>
+      ))}
+    </div>
+  </section>
+)}
 
       <section className="border-t border-border py-20">
         <div className="container text-center">
@@ -125,10 +261,16 @@ const SolutionDetail = () => {
           </p>
 
           <Button variant="hero" size="lg" asChild>
-            <Link to={`/demo?producto=${product.slug}`}>
-              Solicitar demostración
-            </Link>
-          </Button>
+  <a
+    href={whatsappUrl(
+      `Hola, estoy interesado en ${product.name} y quisiera solicitar una demostración.`
+    )}
+    target="_blank"
+    rel="noreferrer"
+  >
+    Solicitar demostración
+  </a>
+</Button>
         </div>
       </section>
     </main>
