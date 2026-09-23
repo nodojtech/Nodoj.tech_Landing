@@ -1,0 +1,2 @@
+# El contacto de las tarjetas NFC debe conservar los saltos CRLF que pide el formato vCard
+*.vcf -text

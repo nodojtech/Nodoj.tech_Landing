@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Jacobo Giraldo Rivera, CEO y cofundador de Nodo J. Guarda el contacto, escribe por WhatsApp o entra al sitio.">
+<meta name="theme-color" content="#07090D">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Nodo J">
+<meta property="og:title" content="Jacobo Giraldo Rivera · Nodo J">
+<meta property="og:description" content="CEO y cofundador de Nodo J. Software que ordena tu negocio.">
+<meta property="og:url" content="https://www.nodoj.tech/jacobo">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.png">
+<link rel="canonical" href="https://www.nodoj.tech/jacobo">
+<title>Jacobo Giraldo Rivera · Nodo J</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#12161C; --night:#07090D; --surf:#161B22;
+  --teal:#00CAAA; --teal-br:#00CAAA; --teal-deep:#07806E; --teal-ink:#0A6357; --teal-wash:#E1F7F1;
+  --paper:#FFFFFF; --mist:#F3F4F6; --line:#E4E6EA; --slate:#5A6068; --grey:#8A929C;
+  --bg:#F3F4F6; --dot:rgba(12,15,20,.13); --text:#0C0F14; --text-2:#5A6068; --accent:#0A6357;
+  --btn-bg:#FFFFFF; --btn-bd:#E4E6EA; --btn-tx:#0C0F14; --btn-hv:#EDEFF2;
+  --pri-bg:#00CAAA; --pri-tx:#04241E;
+  --drop:rgba(12,15,20,.18);
+  --sans:'Hanken Grotesk',system-ui,-apple-system,Segoe UI,sans-serif;
+  --disp:'Space Grotesk','Hanken Grotesk',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --eout:cubic-bezier(.16,1,.3,1); --ease:cubic-bezier(.2,.7,.2,1);
+  --cw:min(310px,76vw); --ch:calc(var(--cw)/1.586); --cd:7px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#07090D; --dot:rgba(255,255,255,.10); --text:#EDF1F5; --text-2:#A0A8B8; --accent:#00CAAA;
+  --btn-bg:#12161C; --btn-bd:rgba(255,255,255,.14); --btn-tx:#EDF1F5; --btn-hv:#191E26;
+  --pri-bg:#00CAAA; --pri-tx:#04241E; --drop:rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --bg:#07090D; --dot:rgba(255,255,255,.10); --text:#EDF1F5; --text-2:#A0A8B8; --accent:#00CAAA;
+  --btn-bg:#12161C; --btn-bd:rgba(255,255,255,.14); --btn-tx:#EDF1F5; --btn-hv:#191E26;
+  --pri-bg:#00CAAA; --pri-tx:#04241E; --drop:rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+.stage{min-height:100%;display:flex;justify-content:center;align-items:flex-start;
+  background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:24px 24px;background-position:0 0}
+.sheet{width:100%;max-width:430px;padding:0 20px;padding-block:clamp(14px,3.4vh,28px);display:flex;flex-direction:column;gap:clamp(10px,2vh,18px)}
+
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mark{display:flex;align-items:center;gap:8px}
+.mark svg{width:15px;height:23px;color:var(--text);--pv:var(--accent)}
+.mark span{font-family:var(--disp);font-weight:700;font-size:15px;letter-spacing:-.01em}
+.mark b{color:var(--accent);font-weight:600}
+.iconbtn{width:38px;height:38px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--btn-bd);background:var(--btn-bg);color:var(--text);cursor:pointer;transition:background .2s var(--ease)}
+.iconbtn:hover{background:var(--btn-hv)}
+.iconbtn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.scene{display:grid;place-items:center;padding:clamp(10px,2.4vh,20px) 0 clamp(20px,3.4vh,30px);perspective:1100px;position:relative}
+.tilt{transform-style:preserve-3d;will-change:transform}
+.card{position:relative;width:var(--cw);height:var(--ch);transform-style:preserve-3d;transition:transform .62s var(--eout);cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:14px;overflow:hidden;backface-visibility:hidden;background:var(--ink);padding:clamp(13px,4.2vw,17px);color:#EDF1F5}
+.front{transform:translateZ(calc(var(--cd)/2));background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:13px 13px}
+.back{transform:translateZ(calc(var(--cd)/-2)) rotateY(180deg);background:#122334}
+.edge{position:absolute;background:var(--teal-deep)}
+.edge.ex{top:15px;left:50%;width:var(--cd);height:calc(100% - 30px);margin-left:calc(var(--cd)/-2)}
+.edge.ey{left:15px;top:50%;height:var(--cd);width:calc(100% - 30px);margin-top:calc(var(--cd)/-2)}
+.edge.r{transform:translateX(calc(var(--cw)/2)) rotateY(90deg)}
+.edge.l{transform:translateX(calc(var(--cw)/-2)) rotateY(90deg)}
+.edge.t{transform:translateY(calc(var(--ch)/-2)) rotateX(90deg)}
+.edge.b{transform:translateY(calc(var(--ch)/2)) rotateX(90deg)}
+.drop{position:absolute;bottom:clamp(6px,1.6vh,14px);left:50%;margin-left:calc(var(--cw)*-.36);width:calc(var(--cw)*.72);height:16px;border-radius:999px;background:var(--drop);filter:blur(11px);transform:translateX(var(--dx,0px)) scaleX(var(--dsc,1));z-index:-1}
+
+.ctop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.ctop .mark svg{width:19px;height:23px;color:#EAF2F0;--pv:var(--teal-br)}
+.ctop .mark span{color:#EAF2F0;font-size:15px}
+.ctop .mark b{color:var(--teal-br)}
+.desc{font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#7D8B9A;text-align:right;line-height:1.5;padding-top:3px}
+.cbot{position:absolute;left:clamp(13px,4.2vw,17px);bottom:clamp(12px,3.6vw,15px)}
+.cbot strong{display:block;font-family:var(--disp);font-size:clamp(13px,3.9vw,15.5px);font-weight:500;letter-spacing:-.01em;line-height:1.25;white-space:nowrap}
+.cbot span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8AA0B4}
+.nfc{position:absolute;right:clamp(12px,3.6vw,15px);bottom:clamp(12px,3.6vw,15px);display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;color:#5C6B7A}
+.nfc svg{width:13px;height:13px;stroke:#5C6B7A;fill:none;stroke-width:2;stroke-linecap:round}
+.sheen{position:absolute;inset:-70% -45%;background:linear-gradient(104deg,rgba(255,255,255,0) 41%,rgba(255,255,255,.13) 50%,rgba(255,255,255,0) 59%);transform:translateX(var(--sx,-34px));opacity:var(--so,.5);pointer-events:none}
+.conn{position:absolute;left:clamp(14px,4.4vw,18px);top:50%;margin-top:-9px;display:flex;align-items:center}
+.conn b{width:4px;height:4px;border-radius:999px;background:rgba(255,255,255,.3);flex:none}
+.conn i{width:clamp(16px,5vw,22px);height:1px;background:rgba(255,255,255,.17);flex:none}
+
+.back .bwrap{display:flex;gap:12px;height:100%;align-items:center}
+.bdata{flex:1;min-width:0;display:flex;flex-direction:column;gap:clamp(9px,2.2vh,14px)}
+.brow{display:flex;flex-direction:column;gap:1px;min-width:0}
+.brow span{font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#8A929C}
+.brow b{font-size:clamp(11px,3.3vw,12.5px);font-weight:500;color:#EDF1F5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qr{flex:none;width:clamp(72px,22vw,84px);border-radius:8px;background:#fff;padding:5px;display:grid;place-items:center}
+.qr img,.qr canvas{display:block;width:100%!important;height:auto!important}
+.qrtx{font-family:var(--mono);font-size:7.5px;line-height:1.35;color:#0C0F14;text-align:center;word-break:break-all;padding:4px}
+.qrcap{position:absolute;right:clamp(13px,4.2vw,17px);bottom:5px;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:#5A6068}
+
+.hint{align-self:center;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);background:transparent;border:1px solid transparent;border-radius:999px;padding:6px 10px;margin:-8px 0 0;cursor:pointer}
+.hint.act{border-color:var(--btn-bd);border-style:dashed;padding:9px 18px;color:var(--text)}
+.hint svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+.who{text-align:center;display:flex;flex-direction:column;gap:3px}
+.who h1{font-family:var(--disp);font-weight:600;font-size:clamp(23px,6.6vw,29px);letter-spacing:-.02em;line-height:1.08;margin:0}
+.who h1 span{display:block}
+.who p{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-2)}
+
+.acts{display:flex;flex-direction:column;gap:9px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;height:52px;border-radius:10px;border:1px solid var(--btn-bd);background:var(--btn-bg);color:var(--btn-tx);font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;transition:background .2s var(--ease),border-color .2s var(--ease),transform .12s var(--ease)}
+.btn:hover{background:var(--btn-hv)}
+.btn:active{transform:scale(.985)}
+.btn.pri{background:var(--pri-bg);border-color:var(--pri-bg);color:var(--pri-tx)}
+.row .btn,.row3 .btn{height:48px;font-size:14.5px}
+.btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:none;box-shadow:0 0 0 3px var(--teal-wash),0 0 0 5px var(--teal)}
+
+.foot{display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:2px;text-align:center}
+.foot p{margin:0;font-size:12.5px;color:var(--text-2)}
+.foot a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);text-decoration:none}
+
+.toast{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:398px;margin:0 auto;background:var(--ink);color:#EAF2F0;border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.45;opacity:0;transform:translateY(10px);transition:opacity .2s var(--ease),transform .2s var(--ease);pointer-events:none;z-index:5}
+.toast.on{opacity:1;transform:none}
+
+.enter .card{animation:land .72s var(--eout) both}
+@keyframes land{from{opacity:0;transform:translateY(-46px) rotateX(26deg) rotateZ(-5deg) scale(.88)}to{opacity:1;transform:none}}
+.enter .who,.enter .acts,.enter .hint,.enter .foot{animation:rise .5s var(--eout) both}
+.enter .who{animation-delay:.3s}.enter .hint{animation-delay:.34s}.enter .acts{animation-delay:.38s}.enter .foot{animation-delay:.46s}
+@keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media (max-height:680px){:root{--cw:min(272px,70vw)}.btn{height:46px}.row .btn,.row3 .btn{height:44px}}
+.face{padding:0;background:#0C0F14;border-radius:calc(var(--cw) * .0374)}
+.front{background-image:none}
+.art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.back{background:#10151C;padding:clamp(13px,4.2vw,17px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--btn-bg:#12161C}}
+:root[data-theme="dark"]{--btn-bg:#12161C}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.stage{position:relative;z-index:1}
+:root{--net-rgb:12,15,20;--pv-rgb:10,99,87}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--net-rgb:255,255,255;--pv-rgb:0,202,170}}
+:root[data-theme="dark"]{--net-rgb:255,255,255;--pv-rgb:0,202,170}
+body[data-bg="on"] .stage{background-image:none}
+</style>
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="njart" viewBox="84 64 47 73"><g stroke="currentColor" stroke-width="5.6" stroke-linecap="round" fill="none"><path d="M99.6 74.7 H120"/><path d="M120 74.8 V112.5"/><path d="M120.1 112.5 L108.1 125.6"/><path d="M92.7 123 L108.1 125.6"/></g><circle cx="99.6" cy="74.7" r="5" fill="currentColor"/><circle cx="120" cy="74.8" r="5" fill="currentColor"/><circle cx="120.1" cy="112.5" r="5" fill="currentColor"/><circle cx="92.7" cy="123" r="5" fill="currentColor"/><circle cx="108.1" cy="125.6" r="7.1" style="fill:var(--pv,currentColor)"/></symbol><symbol id="nj" viewBox="12 5 218 270">
+    <g stroke="currentColor" stroke-width="29" stroke-linecap="round">
+      <line x1="104.5" y1="33" x2="146.5" y2="33"></line>
+      <line x1="191" y1="77.5" x2="191" y2="97.5"></line>
+      <line x1="158.1" y1="197.7" x2="148.3" y2="211.1"></line>
+      <line x1="75.1" y1="210.4" x2="86.9" y2="219.6"></line>
+    </g>
+    <circle cx="60" cy="33" r="26" fill="currentColor"></circle>
+    <circle cx="191" cy="33" r="26" fill="currentColor"></circle>
+    <circle cx="122" cy="247" r="26" fill="currentColor"></circle>
+    <circle cx="40" cy="183" r="26" fill="currentColor"></circle>
+    <circle cx="191" cy="153" r="37" style="fill:var(--pv,currentColor)"></circle>
+  </symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.9-.9L3 20.5l1.5-4.4A8.4 8.4 0 0 1 3.6 11.5a8.4 8.4 0 0 1 8.4-8.4h.5a8.4 8.4 0 0 1 8.5 8.4z"/><path d="M8.5 9.5c0 3 2.5 5.5 5.5 5.5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V17"/><circle cx="8" cy="7.4" r=".9" fill="currentColor" stroke="none"/><path d="M12 17v-3.6a2.6 2.6 0 0 1 5.2 0V17"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4M8.6 13.4l6.8 4"/></symbol>
+  <symbol id="i-nfc" viewBox="0 0 24 24"><path d="M5 5a10 10 0 0 1 0 14M10 8a5 5 0 0 1 0 8M15 11a1.6 1.6 0 0 1 0 2"/></symbol>
+  <symbol id="i-tap" viewBox="0 0 24 24"><path d="M9 11V6.5a2 2 0 0 1 4 0V13"/><path d="M13 11.5a2 2 0 0 1 4 0V16a5 5 0 0 1-5 5h-1.3a4 4 0 0 1-3.1-1.5L5 16.5a1.8 1.8 0 0 1 2.6-2.4L9 15.3"/></symbol>
+</svg>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="stage" id="stage">
+  <div class="sheet" id="sheet">
+    <div class="brand">
+      <span class="mark"><svg viewBox="0 0 47 73" aria-hidden="true"><use href="#njart"></use></svg><span>Nodo J</span></span>
+      <button class="iconbtn" id="share" aria-label="Compartir esta tarjeta"><svg aria-hidden="true"><use href="#i-share"></use></svg></button>
+    </div>
+
+    <div class="scene">
+      <div class="tilt" id="tilt">
+        <div class="card" id="card" role="button" tabindex="0" aria-label="Tarjeta de Jacobo Giraldo Rivera. Tócala para ver el respaldo">
+          <span class="edge ex l"></span><span class="edge ex r"></span><span class="edge ey t"></span><span class="edge ey b"></span>
+          <div class="face front"><svg class="art" viewBox="0 0 856 540" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><pattern id="njr" width="31.6" height="31.6" patternUnits="userSpaceOnUse" x="13" y="13.3"><circle cx="0" cy="0" r="2" fill="#13322F"/></pattern></defs><rect width="856" height="540" fill="#0C0F14"/><rect width="856" height="540" fill="url(#njr)"/><g fill="none" stroke="#00CAAA" stroke-width="1.7"><path d="M14.3 51.7 V27.7 A13.8 13.8 0 0 1 28.1 13.9 H51.7"/><path d="M841.7 488.3 V512.3 A13.8 13.8 0 0 1 827.9 526.1 H804.3"/></g><g fill="none" stroke="#0E3330" stroke-width="1.2"><rect x="67.7" y="147.6" width="338.4" height="209.4" rx="12"/><rect x="81.6" y="161.5" width="311.5" height="181.6" rx="10"/><rect x="95.4" y="175.4" width="283.8" height="153.9" rx="9"/><rect x="109.3" y="189.3" width="255.6" height="126.1" rx="8"/><rect x="195.5" y="222" width="76.8" height="58" rx="2"/><path d="M209.4 222 V280"/><path d="M223.2 222 V280"/><path d="M237.1 222 V280"/><path d="M251.4 222 V280"/><path d="M264.9 222 V280"/></g><rect x="361" y="243" width="5" height="17" fill="#0E3330"/><g stroke="#07564D" stroke-width="1.7" fill="none"><path d="M406.8 189.3 L406.8 336.4"/><path d="M406.8 189.3 L526.0 119.7"/><path d="M406.8 336.4 L526.0 271.9"/><path d="M526.0 119.7 L526.0 271.9"/><path d="M526.0 119.7 L670.5 171.5"/><path d="M526.0 271.9 L670.5 334.0"/><path d="M670.5 63.0 L670.5 171.5"/><path d="M670.5 171.5 L810.2 104.3"/><path d="M670.5 334.0 L810.2 264.3"/><path d="M810.2 104.3 L810.2 264.3"/></g><g fill="#07695D"><circle cx="406.8" cy="189.3" r="4.3"/><circle cx="406.8" cy="336.4" r="4.3"/><circle cx="526.0" cy="119.7" r="4.3"/><circle cx="526.0" cy="271.9" r="4.3"/><circle cx="670.5" cy="63.0" r="4.3"/><circle cx="670.5" cy="171.5" r="4.3"/><circle cx="670.5" cy="334.0" r="4.3"/><circle cx="810.2" cy="104.3" r="4.3"/><circle cx="810.2" cy="264.3" r="4.3"/></g><g stroke="#FFFFFF" stroke-width="5.6" stroke-linecap="round" fill="none"><path d="M99.6 74.7 H120"/><path d="M120 74.8 V112.5"/><path d="M120.1 112.5 L108.1 125.6"/><path d="M92.7 123 L108.1 125.6"/></g><g fill="#FFFFFF"><circle cx="99.6" cy="74.7" r="5"/><circle cx="120" cy="74.8" r="5"/><circle cx="120.1" cy="112.5" r="5"/><circle cx="92.7" cy="123" r="5"/></g><circle cx="108.1" cy="125.6" r="7.1" fill="#00CAAA"/><text x="177" y="105.2" font-family="'Space Grotesk','Hanken Grotesk',sans-serif" font-size="49" font-weight="700" fill="#FFFFFF" textLength="158.9" lengthAdjust="spacingAndGlyphs">Nodo J</text><text x="174.9" y="134.6" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="14" fill="#A0A8B8" textLength="189.2" lengthAdjust="spacingAndGlyphs">SOFTWARE A MEDIDA</text><text x="66" y="363.7" font-family="'Space Grotesk','Hanken Grotesk',sans-serif" font-size="27" font-weight="600" fill="#FFFFFF" textLength="279.2" lengthAdjust="spacingAndGlyphs">Jacobo Giraldo Rivera</text><text x="66.4" y="397.4" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="15" fill="#00CAAA" textLength="30.7" lengthAdjust="spacingAndGlyphs">CEO</text><path d="M65.2 429.7 H750" stroke="#2A2C31" stroke-width="1.2"/><rect x="762.7" y="425.1" width="1.7" height="9.3" fill="#00CAAA"/><rect x="772" y="429.3" width="1.7" height="5.1" fill="#2A2C31"/><rect x="781.2" y="429.3" width="1.7" height="5.1" fill="#2A2C31"/><rect x="789.6" y="425.1" width="1.7" height="9.3" fill="#4A4D52"/><g fill="none" stroke="#A0A8B8" stroke-width="1.8" stroke-linecap="round"><path d="M71.5 463.4 A6 6 0 0 1 71.5 472.6"/><path d="M76.5 459.4 A11 11 0 0 1 76.5 476.6"/><path d="M81.5 455.4 A16 16 0 0 1 81.5 480.6"/></g><text x="100" y="472" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="13.5" fill="#A0A8B8" textLength="186" lengthAdjust="spacingAndGlyphs">ACERCA TU TELÉFONO</text></svg><i class="sheen"></i></div>
+                  <div class="face back">
+            <div class="bwrap">
+              <div class="bdata">
+                <div class="brow"><span>WhatsApp</span><b>+57 312 6602217</b></div>
+                <div class="brow"><span>Correo</span><b>nodojtech@gmail.com</b></div>
+                <div class="brow"><span>Sitio</span><b>nodoj.tech</b></div>
+              </div>
+              <div class="qr" id="qr"><div class="qrtx">nodoj.tech/jacobo</div></div>
+            </div>
+            <span class="qrcap">pásala a alguien más</span>
+          </div>
+        </div>
+      </div>
+      <div class="drop" id="drop"></div>
+    </div>
+
+    <button class="hint" id="hint"><svg aria-hidden="true"><use href="#i-tap" id="hintIcon"></use></svg><span id="hintTx">Toca la tarjeta para girarla</span></button>
+
+    <div class="who">
+      <h1>Jacobo<span>Giraldo Rivera</span></h1>
+      <p>CEO · cofundador · Nodo J</p>
+    </div>
+
+    <nav class="acts">
+      <a class="btn pri" id="vcard" href="contacto.vcf"><svg aria-hidden="true"><use href="#i-save"></use></svg>Guardar contacto</a>
+      <div class="row">
+        <a class="btn" href="https://wa.me/573126602217?text=Hola%20Nodo%20J%2C%20acerqu%C3%A9%20su%20tarjeta%20y%20quiero%20hablar%20de%20un%20proyecto." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-chat"></use></svg>WhatsApp</a>
+        <a class="btn" href="https://www.nodoj.tech" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-globe"></use></svg>Sitio web</a>
+      </div>
+      <div class="row">
+        <a class="btn" href="https://www.instagram.com/nodoj.tech" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"></use></svg>Instagram</a>
+        <a class="btn" href="mailto:nodojtech@gmail.com?subject=Hola%20Nodo%20J&body=Hola%20Nodo%20J%2C%20acerqu%C3%A9%20su%20tarjeta%20y%20quiero%20hablar%20de%20un%20proyecto."><svg aria-hidden="true"><use href="#i-mail"></use></svg>Correo</a>
+      </div>
+    </nav>
+
+    <div class="foot">
+      <p>Software que ordena tu negocio.</p>
+      <a href="https://nodoj.tech" target="_blank" rel="noopener">nodoj.tech</a>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var card = document.getElementById('card');
+  var tilt = document.getElementById('tilt');
+  var drop = document.getElementById('drop');
+  var stage = document.getElementById('stage');
+  var toastEl = document.getElementById('toast');
+  var URL_TARJETA = 'https://www.nodoj.tech/jacobo';
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(function(){ toastEl.classList.remove('on'); }, 4200);
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-toast]');
+    if(el) toast(el.getAttribute('data-toast'));
+  });
+
+  try{
+    if(window.QRCode){
+      var box = document.getElementById('qr');
+      box.textContent = '';
+      new QRCode(box, { text: URL_TARJETA, width: 160, height: 160, colorDark: '#0C0F14', colorLight: '#FFFFFF', correctLevel: QRCode.CorrectLevel.M });
+    }
+  }catch(err){}
+
+  function buzz(ms){ try{ if(navigator.vibrate) navigator.vibrate(ms); }catch(err){} }
+  function flip(){ card.classList.toggle('flip'); buzz(12); pedirPermiso(); }
+  card.addEventListener('click', flip);
+  card.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flip(); }
+  });
+
+  var cur = {x:0,y:0}, tgt = {x:0,y:0}, running = false;
+  function frame(){
+    cur.x += (tgt.x - cur.x) * 0.11;
+    cur.y += (tgt.y - cur.y) * 0.11;
+    tilt.style.transform = 'rotateY(' + cur.x.toFixed(2) + 'deg) rotateX(' + (-cur.y).toFixed(2) + 'deg)';
+    var sh = card.querySelector('.sheen');
+    if(sh){
+      sh.style.setProperty('--sx', (cur.x * 7).toFixed(1) + 'px');
+      sh.style.setProperty('--so', (0.45 + Math.min(Math.abs(cur.x) / 20, 1) * 0.55).toFixed(2));
+    }
+    drop.style.setProperty('--dx', (cur.x * -1.5).toFixed(1) + 'px');
+    drop.style.setProperty('--dsc', (1 - Math.abs(cur.y) / 90).toFixed(3));
+    stage.style.backgroundPosition = (cur.x * 1.1).toFixed(1) + 'px ' + (cur.y * 1.1).toFixed(1) + 'px';
+    if(Math.abs(tgt.x - cur.x) > 0.04 || Math.abs(tgt.y - cur.y) > 0.04) requestAnimationFrame(frame);
+    else running = false;
+  }
+  function aim(x, y){
+    if(reduce) return;
+    tgt.x = Math.max(-18, Math.min(18, x));
+    tgt.y = Math.max(-13, Math.min(13, y));
+    if(!running){ running = true; requestAnimationFrame(frame); }
+  }
+
+  var scene = document.querySelector('.scene');
+  scene.addEventListener('pointermove', function(e){
+    if(e.pointerType === 'mouse'){
+      var r = scene.getBoundingClientRect();
+      aim(((e.clientX - r.left) / r.width - 0.5) * 30, ((e.clientY - r.top) / r.height - 0.5) * 20);
+    }
+  });
+  scene.addEventListener('pointerleave', function(){ aim(0, 0); });
+  scene.addEventListener('touchmove', function(e){
+    var t = e.touches[0]; if(!t) return;
+    var r = scene.getBoundingClientRect();
+    aim(((t.clientX - r.left) / r.width - 0.5) * 30, ((t.clientY - r.top) / r.height - 0.5) * 20);
+  }, {passive:true});
+
+  function onOrient(e){
+    if(e.gamma == null || e.beta == null) return;
+    aim(e.gamma * 0.6, (e.beta - 42) * 0.34);
+  }
+  var hint = document.getElementById('hint');
+  var hintTx = document.getElementById('hintTx');
+  var hintIcon = document.getElementById('hintIcon');
+  var pedido = false;
+  var needsPerm = typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function';
+
+  function hintGirar(){
+    hint.classList.remove('act');
+    hintTx.textContent = 'Toca la tarjeta para girarla';
+    hintIcon.setAttribute('href', '#i-tap');
+    hint.onclick = flip;
+  }
+  function pedirPermiso(){
+    if(!needsPerm || pedido) return;
+    pedido = true;
+    DeviceOrientationEvent.requestPermission().then(function(res){
+      if(res === 'granted'){
+        window.addEventListener('deviceorientation', onOrient);
+        hintGirar();
+      } else { pedido = false; }
+    }).catch(function(){ pedido = false; });
+  }
+  if(needsPerm && !reduce && window.matchMedia('(pointer:coarse)').matches){
+    hint.classList.add('act');
+    hintTx.textContent = 'Activa el movimiento';
+    hintIcon.setAttribute('href', '#i-nfc');
+    hint.onclick = pedirPermiso;
+  } else {
+    hintGirar();
+    if(window.DeviceOrientationEvent && !needsPerm) window.addEventListener('deviceorientation', onOrient);
+  }
+
+  document.getElementById('vcard').addEventListener('click', function(){ buzz(14); });
+
+  document.getElementById('share').addEventListener('click', function(){
+    var datos = { title: 'Jacobo Giraldo Rivera · Nodo J', text: 'Contacto de Jacobo Giraldo Rivera, CEO de Nodo J', url: URL_TARJETA };
+    if(navigator.share){ navigator.share(datos).catch(function(){}); return; }
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(URL_TARJETA).then(function(){ toast('Enlace copiado: ' + URL_TARJETA); }).catch(function(){ toast(URL_TARJETA); });
+      return;
+    }
+    toast(URL_TARJETA);
+  });
+
+  if(!reduce){
+    var sheet = document.getElementById('sheet');
+    sheet.classList.add('enter');
+    setTimeout(function(){ sheet.classList.remove('enter'); }, 1200);
+  }
+
+  var cvs = document.getElementById('bg');
+  var ctx = cvs.getContext('2d');
+  var W = 0, H = 0, dpr = 1, DIAG = 1, ticks = 0, ultimo = 0, intro = 0;
+  var NET = '12,15,20', ACC = '0,202,170';
+  var rCard = null, rCalma = null, ondas = [], dedo = { x: 0, y: 0, f: 0 };
+  var PASO = 26, ALC = 122;
+
+  function leerColores(){
+    var cs = getComputedStyle(document.documentElement);
+    NET = (cs.getPropertyValue('--net-rgb') || '12,15,20').trim();
+    ACC = (cs.getPropertyValue('--pv-rgb') || '0,202,170').trim();
+  }
+
+  function medirZonas(){
+    var c = card.getBoundingClientRect();
+    var s = document.getElementById('sheet').getBoundingClientRect();
+    rCard = { x: c.left, y: c.top, r: c.right, b: c.bottom };
+    rCalma = { x: s.left, y: c.bottom + 4, r: s.right, b: s.bottom };
+  }
+
+  function enCalma(x, y){
+    return rCalma && x > rCalma.x && x < rCalma.r && y > rCalma.y && y < rCalma.b;
+  }
+
+  function punto(x, y, r, color, alpha){
+    if(enCalma(x, y)) alpha *= 0.38;
+    ctx.fillStyle = 'rgba(' + color + ',' + alpha.toFixed(3) + ')';
+    ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+  }
+
+  // la tarjeta empuja la reticula cuando gira
+  function ondaDesdeTarjeta(){
+    if(reduce || ondas.length > 2) return;
+    if(!rCard) medirZonas();
+    ondas.push({ x: (rCard.x + rCard.r) / 2, y: (rCard.y + rCard.b) / 2, t: 0 });
+  }
+
+  function seguirDedo(e){
+    var t = e.touches ? e.touches[0] : e;
+    if(!t) return;
+    dedo.x = t.clientX; dedo.y = t.clientY; dedo.f = 1;
+  }
+
+  function medir(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cvs.clientWidth; H = cvs.clientHeight;
+    cvs.width = Math.round(W * dpr); cvs.height = Math.round(H * dpr);
+    DIAG = Math.sqrt(W * W + H * H);
+    leerColores(); medirZonas();
+  }
+
+  function pintarFondo(){
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.save();
+    ctx.translate(cur.x * 0.8, cur.y * 0.8);
+
+    var cx0 = W / 2, cy0 = H / 2;
+    var revel = intro * DIAG * 0.62;
+    var i, o, x, y, ph, s, dx, dy, ex, ey, d, f, rad, dif, r, alpha;
+
+    for(y = PASO / 2; y < H + PASO; y += PASO){
+      for(x = PASO / 2; x < W + PASO; x += PASO){
+        dx = 0; dy = 0; ex = 0;
+
+        if(intro < 1){
+          d = Math.sqrt((x - cx0) * (x - cx0) + (y - cy0) * (y - cy0));
+          if(d > revel) continue;
+          if(revel - d < 64) ex += (1 - (revel - d) / 64) * 0.9;
+        }
+
+        for(i = 0; i < ondas.length; i++){
+          o = ondas[i];
+          rad = o.t * DIAG * 0.78;
+          d = Math.sqrt((x - o.x) * (x - o.x) + (y - o.y) * (y - o.y)) || 1;
+          dif = d - rad;
+          if(dif > -72 && dif < 72){
+            f = Math.cos(dif / 72 * 1.5708) * (1 - o.t);
+            dx += (x - o.x) / d * f * 10;
+            dy += (y - o.y) / d * f * 10;
+            ex += f * 0.95;
+          }
+        }
+
+        if(dedo.f > 0.01){
+          ey = dedo.x - x; d = dedo.y - y;
+          rad = Math.sqrt(ey * ey + d * d) || 1;
+          if(rad < ALC){
+            f = (1 - rad / ALC) * dedo.f;
+            dx += ey * f * 0.32; dy += d * f * 0.32;
+            ex += f * 0.85;
+          }
+        }
+
+        ph = x * 0.013 + y * 0.017 - ticks * 0.035;
+        s = 0.5 + 0.5 * Math.sin(ph);
+        r = 0.8 + s * 1.5 + ex * 2.4;
+        alpha = Math.min(0.95, 0.1 + s * 0.3 + ex * 0.55);
+        punto(x + dx, y + dy, r, (s > 0.985 || ex > 0.55) ? ACC : NET, alpha);
+      }
+    }
+    ctx.restore();
+  }
+
+  function bucle(ts){
+    requestAnimationFrame(bucle);
+    if(document.hidden) return;
+    if(ts - ultimo < 33) return;
+    ultimo = ts; ticks++;
+    if(intro < 1) intro = Math.min(1, intro + 0.03);
+    for(var i = ondas.length - 1; i >= 0; i--){
+      ondas[i].t += 0.013;
+      if(ondas[i].t >= 1) ondas.splice(i, 1);
+    }
+    if(dedo.f > 0) dedo.f = Math.max(0, dedo.f - 0.022);
+    if(ticks % 20 === 0) medirZonas();
+    pintarFondo();
+  }
+
+  medir();
+  document.body.setAttribute('data-bg', 'on');
+  window.addEventListener('resize', medir);
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', leerColores);
+  card.addEventListener('click', ondaDesdeTarjeta);
+  card.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' ') ondaDesdeTarjeta();
+  });
+  document.addEventListener('pointermove', seguirDedo, { passive: true });
+  document.addEventListener('touchmove', seguirDedo, { passive: true });
+
+  if(reduce){ intro = 1; ticks = 40; pintarFondo(); }
+  else requestAnimationFrame(bucle);
+
+})();
+</script>
+
+</body>
+</html>
