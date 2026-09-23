@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Giraldo Rivera;Jacobo;;;
+FN:Jacobo Giraldo Rivera
+ORG:Nodo J
+TITLE:CEO y cofundador
+TEL;TYPE=CELL,VOICE:+573126602217
+EMAIL;TYPE=INTERNET,WORK:nodojtech@gmail.com
+URL:https://www.nodoj.tech
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/nodoj.tech
+NOTE:Software a medida para pymes.
+END:VCARD

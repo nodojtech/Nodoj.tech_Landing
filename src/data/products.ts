@@ -51,24 +51,23 @@ export const products: Product[] = [
   ],
 
   brand: {
-    logo: "/media/products/boxflow/brand/logo.svg",
-    logoLight: "/media/products/boxflow/brand/logo-light.svg",
+    logo: "/media/products/boxflow/brand/logo-horizontal.png",
     icon: "/media/products/boxflow/brand/icon.png",
   },
 
   media: {
-    heroImage: "/media/products/boxflow/screens/hero.webp",
+    heroImage: "/media/products/boxflow/screens/classes.jpg",
 
     screenshots: [
       {
-        src: "/media/products/boxflow/screens/dashboard.webp",
-        alt: "Panel principal de BoxFlow",
-        label: "Panel principal",
+        src: "/media/products/boxflow/screens/admin.jpg",
+        alt: "Panel administrativo de BoxFlow",
+        label: "Panel administrativo",
       },
       {
-        src: "/media/products/boxflow/screens/secondary.webp",
-        alt: "Gestión de clases en BoxFlow",
-        label: "Gestión de clases",
+        src: "/media/products/boxflow/screens/athlete-profile.jpg",
+        alt: "Perfil de atleta en BoxFlow",
+        label: "Perfil del atleta",
       },
     ],
   },

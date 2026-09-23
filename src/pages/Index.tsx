@@ -564,7 +564,7 @@ const ProductsSection = () => (
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             custom={index}
-            className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 ease-brand hover:border-primary/30 hover:shadow-md"
+            className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 ease-brand hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md"
           >
             {/* Product metadata */}
             <div className="flex items-center justify-between gap-4 border-b border-border px-5 py-4 md:px-6">
@@ -591,17 +591,21 @@ const ProductsSection = () => (
       imageClassName="transition-transform duration-500 ease-brand group-hover:scale-[1.015]"
     />
 
-    {(product.brand?.logo || product.brand?.logoLight) && (
-      <div className="absolute bottom-4 left-4 max-w-[70%]">
-        <div className="flex min-h-10 items-center rounded-md border border-border bg-background/90 px-3 py-2 backdrop-blur-sm">
-          <ProductLogo
-            product={product}
-            className="max-h-6 max-w-[150px]"
-            fallbackClassName="text-sm"
-          />
-        </div>
-      </div>
-    )}
+    {(product.brand?.icon ||
+  product.brand?.logo ||
+  product.brand?.logoLight) && (
+  <div className="absolute bottom-4 left-4">
+    <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-border bg-white p-2.5 shadow-sm">
+      <ProductLogo
+        product={product}
+        variant="icon"
+        preferLight={false}
+        className="max-h-full max-w-full"
+        fallback="none"
+      />
+    </div>
+  </div>
+)}
   </div>
 </div>
 
@@ -637,16 +641,17 @@ const ProductsSection = () => (
 
               <div className="mt-7">
                 <Link
-                  to={`/soluciones/${product.slug}`}
-                  className="inline-flex min-h-tap items-center gap-2 font-body text-button text-foreground transition-colors duration-fast hover:text-primary"
-                >
-                  Conocer {product.name}
-                  <ArrowRight
-                    className="h-4 w-4"
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  />
-                </Link>
+  to={`/soluciones/${product.slug}`}
+  className="group/link inline-flex min-h-tap items-center gap-2 font-body text-button text-foreground transition-colors duration-fast hover:text-primary"
+>
+  Conocer {product.name}
+
+  <ArrowRight
+    className="h-4 w-4 transition-transform duration-200 ease-brand group-hover/link:translate-x-1"
+    strokeWidth={2}
+    aria-hidden="true"
+  />
+</Link>
               </div>
             </div>
           </motion.article>

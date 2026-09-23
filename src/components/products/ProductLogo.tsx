@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Product } from "@/data/products";
 import { cn } from "@/lib/utils";
 
@@ -6,6 +6,7 @@ type ProductLogoProps = {
   product: Product;
   className?: string;
   fallbackClassName?: string;
+  variant?: "logo" | "icon";
   preferLight?: boolean;
   fallback?: "name" | "none";
 };
@@ -14,21 +15,46 @@ const ProductLogo = ({
   product,
   className,
   fallbackClassName,
+  variant = "logo",
   preferLight = true,
   fallback = "name",
 }: ProductLogoProps) => {
-  const logoSrc =
-    preferLight && product.brand?.logoLight
-      ? product.brand.logoLight
-      : product.brand?.logo;
+  const sources = useMemo(() => {
+    const brand = product.brand;
 
-  const [hasError, setHasError] = useState(false);
+    if (!brand) {
+      return [];
+    }
+
+    const preferred =
+      variant === "icon"
+        ? [
+            brand.icon,
+            preferLight ? brand.logoLight : undefined,
+            brand.logo,
+          ]
+        : [
+            preferLight ? brand.logoLight : undefined,
+            brand.logo,
+            brand.icon,
+          ];
+
+    return preferred.filter(
+      (src, index, array): src is string =>
+        Boolean(src) && array.indexOf(src) === index
+    );
+  }, [product.brand, variant, preferLight]);
+
+  const sourceKey = sources.join("|");
+  const [sourceIndex, setSourceIndex] = useState(0);
 
   useEffect(() => {
-    setHasError(false);
-  }, [logoSrc]);
+    setSourceIndex(0);
+  }, [sourceKey]);
 
-  if (!logoSrc || hasError) {
+  const currentSource = sources[sourceIndex];
+
+  if (!currentSource) {
     if (fallback === "none") {
       return null;
     }
@@ -37,7 +63,7 @@ const ProductLogo = ({
       <span
         className={cn(
           "font-heading text-xl font-semibold tracking-[-0.025em] text-foreground",
-          fallbackClassName,
+          fallbackClassName
         )}
       >
         {product.name}
@@ -47,10 +73,10 @@ const ProductLogo = ({
 
   return (
     <img
-      src={logoSrc}
+      src={currentSource}
       alt={`Logo de ${product.name}`}
       className={cn("w-auto object-contain", className)}
-      onError={() => setHasError(true)}
+      onError={() => setSourceIndex((current) => current + 1)}
     />
   );
 };

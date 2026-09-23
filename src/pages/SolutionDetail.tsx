@@ -42,7 +42,9 @@ const SolutionDetail = () => {
       {product.tag}
     </motion.p>
 
-    {(product.brand?.logo || product.brand?.logoLight) && (
+    {(product.brand?.logo ||
+  product.brand?.logoLight ||
+  product.brand?.icon) && (
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -53,13 +55,15 @@ const SolutionDetail = () => {
         }}
         className="mb-8 flex justify-center"
       >
-        <div className="flex min-h-[76px] items-center justify-center rounded-xl border border-border bg-card px-8 py-5">
-          <ProductLogo
-            product={product}
-            className="max-h-12 max-w-[240px]"
-            fallback="none"
-          />
-        </div>
+        <div className="flex min-h-[96px] items-center justify-center rounded-xl border border-border bg-white px-8 py-5 shadow-sm">
+  <ProductLogo
+    product={product}
+    variant="logo"
+    preferLight={false}
+    className="max-h-14 max-w-[320px]"
+    fallback="none"
+  />
+</div>
       </motion.div>
     )}
 
