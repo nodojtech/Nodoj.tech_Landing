@@ -13,7 +13,7 @@ import { products } from "@/data/products";
 import BrandWordmark from "@/components/brand/BrandWordmark";
 import ProductLogo from "@/components/products/ProductLogo";
 import ProductHeroMedia from "@/components/products/ProductHeroMedia";
-import { whatsappUrl } from "@/data/contact";
+import { contact, whatsappUrl } from "@/data/contact";
 import { Instagram } from "lucide-react";
 
 const Navbar = () => (
