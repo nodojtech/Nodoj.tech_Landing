@@ -145,6 +145,97 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);fon
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--net-rgb:255,255,255;--pv-rgb:0,202,170}}
 :root[data-theme="dark"]{--net-rgb:255,255,255;--pv-rgb:0,202,170}
 body[data-bg="on"] .stage{background-image:none}
+#velo{position:fixed;inset:0;z-index:20;background:var(--bg)}
+body[data-intro] #bg{z-index:25}
+.intro{--t:1;position:fixed;inset:0;z-index:30;display:grid;place-items:center;-webkit-tap-highlight-color:transparent}
+#velo.fuera,.intro.fuera{animation:veloSale calc(var(--t) * .6s) var(--ease) forwards}
+@keyframes veloSale{to{opacity:0;visibility:hidden}}
+.intro .lienzo{position:relative;display:flex;flex-direction:column;align-items:center;gap:15px}
+.intro svg.j{width:clamp(76px,24vw,104px);height:auto;overflow:visible;color:var(--text);--pv:var(--accent)}
+.intro .ln{stroke:currentColor;stroke-width:5.6;stroke-linecap:round;fill:none;pathLength:1;
+  stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.intro .nd,.intro .pv{opacity:0}
+.intro .nd{fill:currentColor}
+.intro .pv{fill:var(--accent)}
+.intro .aro{fill:none;stroke:var(--accent);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+.intro .wm{font-family:var(--disp);font-weight:700;font-size:clamp(20px,5.8vw,26px);letter-spacing:-.01em;color:var(--text);opacity:0}
+.intro .lectura{position:absolute;top:calc(100% + 26px);left:50%;transform:translateX(-50%);display:flex;
+  flex-direction:column;align-items:center;gap:6px;white-space:nowrap;font-family:var(--mono);font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--text-2)}
+.intro .lectura i{font-style:normal;opacity:0}
+.intro .lectura b{color:var(--accent);font-weight:400}
+.intro .haz{position:fixed;left:0;right:0;top:0;height:2px;background:var(--accent);opacity:0;
+  transform:translateY(-4px);will-change:transform}
+.intro .halo{position:fixed;left:0;right:0;top:0;height:96px;opacity:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(0,202,170,0) 0%,rgba(0,202,170,.09) 80%,rgba(0,202,170,.2) 100%);
+  will-change:transform}
+.intro .ondas{position:absolute;top:-78px;left:50%;transform:translateX(-50%);width:60px;height:60px;color:var(--accent);opacity:0}
+.intro .ondas path{stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round}
+
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes llega{from{opacity:0;transform:translate(var(--fx,0),var(--fy,0)) scale(.35)}to{opacity:1;transform:none}}
+@keyframes traza{from{opacity:1;stroke-dashoffset:1}to{opacity:1;stroke-dashoffset:0}}
+@keyframes sube{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes entraDato{from{opacity:0;letter-spacing:.32em}to{opacity:1;letter-spacing:.18em}}
+@keyframes pulsa{from{opacity:0;transform:translateX(-50%) scale(.55)}to{opacity:1;transform:translateX(-50%) scale(1)}}
+@keyframes dispersa{55%{opacity:1}to{opacity:0;transform:translate(var(--dx,0),var(--dy,0)) scale(.45)}}
+@keyframes escapa{to{opacity:0;transform:translateY(-7px)}}
+@keyframes agranda{to{opacity:0;transform:scale(1.45)}}
+@keyframes aro{from{opacity:.55;transform:scale(1)}to{opacity:0;transform:scale(3)}}
+
+.intro .nd:nth-of-type(1){--fx:-54px;--fy:-66px;--dx:-26px;--dy:-30px}
+.intro .nd:nth-of-type(2){--fx:56px;--fy:-60px;--dx:30px;--dy:-24px}
+.intro .nd:nth-of-type(3){--fx:60px;--fy:54px;--dx:28px;--dy:26px}
+.intro .nd:nth-of-type(4){--fx:-58px;--fy:48px;--dx:-30px;--dy:22px}
+.intro .pv{--fx:0px;--fy:72px;--dx:6px;--dy:34px}
+
+/* salida: el logo se deshace en la retícula */
+.intro.suelta .ln{animation:escapa calc(var(--t) * .24s) var(--ease) forwards}
+.intro.suelta .nd,.intro.suelta .pv{animation:dispersa calc(var(--t) * .6s) var(--eout) forwards}
+.intro.suelta .wm,.intro.suelta .lectura{animation:escapa calc(var(--t) * .34s) var(--ease) forwards}
+.intro.suelta svg.j{animation:agranda calc(var(--t) * .6s) var(--eout) forwards}
+
+.intro[data-v="M1"] .nd:nth-of-type(1){animation:llega calc(var(--t) * 0.42s) var(--eout) both calc(var(--t) * 0.74s)}
+.intro[data-v="M1"] .nd:nth-of-type(2){animation:llega calc(var(--t) * 0.42s) var(--eout) both calc(var(--t) * 0.81s)}
+.intro[data-v="M1"] .nd:nth-of-type(3){animation:llega calc(var(--t) * 0.42s) var(--eout) both calc(var(--t) * 0.88s)}
+.intro[data-v="M1"] .nd:nth-of-type(4){animation:llega calc(var(--t) * 0.42s) var(--eout) both calc(var(--t) * 0.96s)}
+.intro[data-v="M1"] .pv{animation:llega calc(var(--t) * 0.44s) var(--eout) both calc(var(--t) * 1.04s)}
+.intro[data-v="M1"] .ln{animation:traza calc(var(--t) * 0.3s) var(--ease) both calc(var(--t) * 1.16s)}
+.intro[data-v="M1"] .wm{animation:sube calc(var(--t) * 0.36s) var(--eout) both calc(var(--t) * 1.3s)}
+.intro[data-v="M1"] .aro{animation:aro calc(var(--t) * 0.55s) var(--eout) both calc(var(--t) * 1.04s)}
+.intro[data-v="M2"] .lectura i:nth-child(1){animation:entraDato calc(var(--t) * 0.3s) var(--eout) both calc(var(--t) * 0.42s)}
+.intro[data-v="M2"] .lectura i:nth-child(2){animation:entraDato calc(var(--t) * 0.3s) var(--eout) both calc(var(--t) * 0.78s)}
+.intro[data-v="M2"] .pv{animation:pop calc(var(--t) * 0.3s) var(--eout) both calc(var(--t) * 0.98s)}
+.intro[data-v="M2"] .nd:nth-of-type(1){animation:pop calc(var(--t) * 0.26s) var(--eout) both calc(var(--t) * 1.06s)}
+.intro[data-v="M2"] .nd:nth-of-type(2){animation:pop calc(var(--t) * 0.26s) var(--eout) both calc(var(--t) * 1.12s)}
+.intro[data-v="M2"] .nd:nth-of-type(3){animation:pop calc(var(--t) * 0.26s) var(--eout) both calc(var(--t) * 1.18s)}
+.intro[data-v="M2"] .nd:nth-of-type(4){animation:pop calc(var(--t) * 0.26s) var(--eout) both calc(var(--t) * 1.24s)}
+.intro[data-v="M2"] .ln{animation:traza calc(var(--t) * 0.28s) var(--ease) both calc(var(--t) * 1.32s)}
+.intro[data-v="M2"] .wm{animation:sube calc(var(--t) * 0.34s) var(--eout) both calc(var(--t) * 1.46s)}
+.intro[data-v="M2"] .lectura i:nth-child(3){animation:entraDato calc(var(--t) * 0.3s) var(--eout) both calc(var(--t) * 1.56s)}
+.intro[data-v="M2"] .aro{animation:aro calc(var(--t) * 0.55s) var(--eout) both calc(var(--t) * 0.98s)}
+.intro[data-v="M3"] .ondas{animation:pulsa calc(var(--t) * 0.44s) var(--eout) both calc(var(--t) * 0.26s)}
+.intro[data-v="M3"] .pv{animation:pop calc(var(--t) * 0.32s) var(--eout) both calc(var(--t) * 0.62s)}
+.intro[data-v="M3"] .nd:nth-of-type(1){animation:pop calc(var(--t) * 0.28s) var(--eout) both calc(var(--t) * 0.72s)}
+.intro[data-v="M3"] .nd:nth-of-type(2){animation:pop calc(var(--t) * 0.28s) var(--eout) both calc(var(--t) * 0.79s)}
+.intro[data-v="M3"] .nd:nth-of-type(3){animation:pop calc(var(--t) * 0.28s) var(--eout) both calc(var(--t) * 0.86s)}
+.intro[data-v="M3"] .nd:nth-of-type(4){animation:pop calc(var(--t) * 0.28s) var(--eout) both calc(var(--t) * 0.93s)}
+.intro[data-v="M3"] .ln{animation:traza calc(var(--t) * 0.28s) var(--ease) both calc(var(--t) * 1.03s)}
+.intro[data-v="M3"] .wm{animation:sube calc(var(--t) * 0.34s) var(--eout) both calc(var(--t) * 1.18s)}
+.intro[data-v="M3"] .aro{animation:aro calc(var(--t) * 0.55s) var(--eout) both calc(var(--t) * 0.62s)}
+.intro[data-v="M4"] .nd:nth-of-type(1){animation:pop calc(var(--t) * 0.24s) var(--eout) both calc(var(--t) * 0.56s)}
+.intro[data-v="M4"] .nd:nth-of-type(2){animation:pop calc(var(--t) * 0.24s) var(--eout) both calc(var(--t) * 0.61s)}
+.intro[data-v="M4"] .ln:nth-of-type(1){animation:traza calc(var(--t) * 0.2s) var(--ease) both calc(var(--t) * 0.64s)}
+.intro[data-v="M4"] .ln:nth-of-type(2){animation:traza calc(var(--t) * 0.24s) var(--ease) both calc(var(--t) * 0.7s)}
+.intro[data-v="M4"] .nd:nth-of-type(3){animation:pop calc(var(--t) * 0.24s) var(--eout) both calc(var(--t) * 0.82s)}
+.intro[data-v="M4"] .ln:nth-of-type(3){animation:traza calc(var(--t) * 0.18s) var(--ease) both calc(var(--t) * 0.88s)}
+.intro[data-v="M4"] .pv{animation:pop calc(var(--t) * 0.3s) var(--eout) both calc(var(--t) * 0.95s)}
+.intro[data-v="M4"] .nd:nth-of-type(4){animation:pop calc(var(--t) * 0.24s) var(--eout) both calc(var(--t) * 1.02s)}
+.intro[data-v="M4"] .ln:nth-of-type(4){animation:traza calc(var(--t) * 0.18s) var(--ease) both calc(var(--t) * 1.08s)}
+.intro[data-v="M4"] .wm{animation:sube calc(var(--t) * 0.36s) var(--eout) both calc(var(--t) * 1.22s)}
+.intro[data-v="M4"] .aro{animation:aro calc(var(--t) * 0.55s) var(--eout) both calc(var(--t) * 0.95s)}
+
+@media (prefers-reduced-motion:reduce){#velo,.intro{display:none}}
 </style>
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -179,6 +270,35 @@ img{max-width:100%}
 </svg>
 
 <canvas id="bg" aria-hidden="true"></canvas>
+<div id="velo"></div>
+<div class="intro" id="intro" data-v="M1" aria-hidden="true">
+  <i class="halo"></i>
+  <i class="haz"></i>
+  <div class="lienzo">
+    <svg class="ondas" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 5a10 10 0 0 1 0 14"/><path d="M10 8a5 5 0 0 1 0 8"/><path d="M15 11a1.6 1.6 0 0 1 0 2"/>
+    </svg>
+    <svg class="j" viewBox="84 64 47 73" aria-hidden="true">
+      <path class="ln" d="M99.6 74.7 H120"/>
+      <path class="ln" d="M120 74.8 V112.5"/>
+      <path class="ln" d="M120.1 112.5 L108.1 125.6"/>
+      <path class="ln" d="M92.7 123 L108.1 125.6"/>
+      <circle class="nd" cx="99.6" cy="74.7" r="5"/>
+      <circle class="nd" cx="120" cy="74.8" r="5"/>
+      <circle class="nd" cx="120.1" cy="112.5" r="5"/>
+      <circle class="nd" cx="92.7" cy="123" r="5"/>
+      <circle class="pv" cx="108.1" cy="125.6" r="7.1"/>
+      <circle class="aro" cx="108.1" cy="125.6" r="7.1"/>
+    </svg>
+    <span class="wm">Nodo J</span>
+    <span class="lectura">
+      <i>Chip ntag215 · <b>ok</b></i>
+      <i>Perfil · <b>Jacobo</b></i>
+      <i>Enlace establecido</i>
+    </span>
+  </div>
+</div>
+
 <div class="stage" id="stage">
   <div class="sheet" id="sheet">
     <div class="brand">
@@ -356,18 +476,14 @@ img{max-width:100%}
     toast(URL_TARJETA);
   });
 
-  if(!reduce){
-    var sheet = document.getElementById('sheet');
-    sheet.classList.add('enter');
-    setTimeout(function(){ sheet.classList.remove('enter'); }, 1200);
-  }
+
 
   var cvs = document.getElementById('bg');
   var ctx = cvs.getContext('2d');
   var W = 0, H = 0, dpr = 1, DIAG = 1, ticks = 0, ultimo = 0, intro = 0;
   var NET = '12,15,20', ACC = '0,202,170';
   var rCard = null, rCalma = null, ondas = [], dedo = { x: 0, y: 0, f: 0 };
-  var PASO = 26, ALC = 122;
+  var PASO = 26, ALC = 122, escaner = -1, brillo = 1;
 
   function leerColores(){
     var cs = getComputedStyle(document.documentElement);
@@ -427,7 +543,11 @@ img{max-width:100%}
       for(x = PASO / 2; x < W + PASO; x += PASO){
         dx = 0; dy = 0; ex = 0;
 
-        if(intro < 1){
+        if(escaner >= 0){
+          if(y > escaner * H) continue;
+          d = escaner * H - y;
+          if(d < 96) ex += (1 - d / 96) * 1.2;
+        } else if(intro < 1){
           d = Math.sqrt((x - cx0) * (x - cx0) + (y - cy0) * (y - cy0));
           if(d > revel) continue;
           if(revel - d < 64) ex += (1 - (revel - d) / 64) * 0.9;
@@ -458,8 +578,8 @@ img{max-width:100%}
 
         ph = x * 0.013 + y * 0.017 - ticks * 0.035;
         s = 0.5 + 0.5 * Math.sin(ph);
-        r = 0.8 + s * 1.5 + ex * 2.4;
-        alpha = Math.min(0.95, 0.1 + s * 0.3 + ex * 0.55);
+        r = (0.8 + s * 1.5 + ex * 2.4) * brillo;
+        alpha = Math.min(0.95, (0.1 + s * 0.3 + ex * 0.55) * brillo);
         punto(x + dx, y + dy, r, (s > 0.985 || ex > 0.55) ? ACC : NET, alpha);
       }
     }
@@ -492,8 +612,139 @@ img{max-width:100%}
   document.addEventListener('pointermove', seguirDedo, { passive: true });
   document.addEventListener('touchmove', seguirDedo, { passive: true });
 
+  window.nodojFondo = { revelar: function(){ intro = 0; },
+    escaner: function(f){ escaner = f; if(f >= 0) intro = 1; },
+    brillo: function(v){ brillo = v; },
+    onda: function(x, y){ if(!reduce && ondas.length < 3) ondas.push({ x: x, y: y, t: 0 }); } };
   if(reduce){ intro = 1; ticks = 40; pintarFondo(); }
   else requestAnimationFrame(bucle);
+
+
+  var capa = document.getElementById('intro');
+  var velo = document.getElementById('velo');
+  var haz = capa.querySelector('.haz');
+  var halo = capa.querySelector('.halo');
+  var sheet = document.getElementById('sheet');
+  var ANTICIPA = 0.18, SALIDA = 0.52;
+  var GUION = { M1: { haz: 0.8, fin: 1.66 }, M2: { haz: 0.95, fin: 1.86 }, M3: { haz: 0, fin: 1.52 }, M4: { haz: 1.05, fin: 1.58 } };
+  var tempo = 1.3, respiro = 0.45, tomaActual = 'M1';
+  var rafHaz = 0, cerrando = false;
+
+  function fondo(){ return window.nodojFondo; }
+
+  // el haz entra rapido, frena donde esta el logo y sale rapido
+  function ritmo(t){ return Math.max(0, Math.min(1, t + 0.6 * Math.sin(6.2832 * t) / 6.2832)); }
+
+  function moverHaz(t, visible){
+    var y = t * innerHeight;
+    haz.style.opacity = visible ? '1' : '0';
+    halo.style.opacity = visible ? '1' : '0';
+    haz.style.transform = 'translateY(' + y.toFixed(1) + 'px)';
+    halo.style.transform = 'translateY(' + (y - 96).toFixed(1) + 'px)';
+  }
+
+  function barrer(dur){
+    var ini = 0;
+    cancelAnimationFrame(rafHaz);
+    (function paso(ts){
+      if(!ini) ini = ts;
+      var t = Math.min(1, (ts - ini) / dur);
+      var y = ritmo(t);
+      moverHaz(y, t < 1);
+      if(fondo()) fondo().escaner(y);
+      if(t < 1) rafHaz = requestAnimationFrame(paso);
+      else { moverHaz(0, false); if(fondo()) fondo().escaner(-1); }
+    })(performance.now());
+  }
+
+  // la reticula respira en el momento del respiro
+  function respira(ms){
+    if(!fondo() || !fondo().brillo) return;
+    var ini = performance.now();
+    (function paso(ts){
+      var t = (ts - ini) / ms;
+      if(t >= 1){ fondo().brillo(1); return; }
+      fondo().brillo(1 + 0.4 * Math.sin(Math.PI * t));
+      requestAnimationFrame(paso);
+    })(ini);
+  }
+
+  function entradaPagina(){
+    if(reduce) return;
+    sheet.classList.remove('enter'); void sheet.offsetWidth; sheet.classList.add('enter');
+    setTimeout(function(){ sheet.classList.remove('enter'); }, 1400);
+  }
+
+  function cerrarIntro(){
+    if(cerrando) return;
+    cerrando = true;
+    cancelAnimationFrame(rafHaz);
+    moverHaz(0, false);
+    if(fondo()){ fondo().escaner(-1); fondo().brillo(1); fondo().onda(innerWidth / 2, innerHeight * 0.42); }
+    capa.classList.add('suelta');
+    // la pagina entra mientras el velo todavia se va: se cruzan, no se turnan
+    setTimeout(function(){ velo.classList.add('fuera'); capa.classList.add('fuera'); }, 220 * tempo);
+    setTimeout(entradaPagina, 340 * tempo);
+    setTimeout(function(){
+      capa.hidden = true; velo.hidden = true;
+      document.body.removeAttribute('data-intro');
+    }, (SALIDA + 0.45) * 1000 * tempo);
+  }
+
+  function duracion(v){
+    var g = GUION[v];
+    return (g.fin + respiro + SALIDA) * tempo;
+  }
+
+  function correrIntro(v){
+    tomaActual = v;
+    cerrando = false;
+    cancelAnimationFrame(rafHaz);
+    clearTimeout(capa._t); clearTimeout(capa._b);
+    capa.hidden = false; velo.hidden = false;
+    capa.className = 'intro'; velo.className = '';
+    capa.style.setProperty('--t', tempo);
+    document.body.setAttribute('data-intro', '');
+    void capa.offsetWidth;
+    capa.setAttribute('data-v', v);
+    if(v === '0' || reduce){
+      capa.hidden = true; velo.hidden = true;
+      document.body.removeAttribute('data-intro');
+      if(fondo()){ fondo().escaner(-1); fondo().revelar(); }
+      entradaPagina();
+      return;
+    }
+    var g = GUION[v];
+    if(fondo()){ fondo().brillo(1); fondo().escaner(g.haz ? 0 : 1); }
+    if(g.haz){
+      setTimeout(function(){
+        barrer(g.haz * 1000 * tempo);
+      }, ANTICIPA * 1000 * tempo);
+    } else if(fondo()){
+      setTimeout(function(){ fondo().onda(innerWidth / 2, 0); }, (ANTICIPA + 0.1) * 1000 * tempo);
+    }
+    capa._b = setTimeout(function(){ respira(respiro * 1000 * tempo + 300); }, g.fin * 1000 * tempo);
+    capa._t = setTimeout(cerrarIntro, (g.fin + respiro) * 1000 * tempo);
+  }
+
+  capa.addEventListener('pointerdown', function(){ clearTimeout(capa._t); cerrarIntro(); });
+
+  function arrancarIntro(){ correrIntro('M1'); }
+  if(document.visibilityState === 'hidden'){
+    // la pagina se abrio en segundo plano: esperamos a que se vea, pero no para siempre
+    var esperaVisible = setTimeout(arrancarIntro, 8000);
+    document.addEventListener('visibilitychange', function una(){
+      if(document.visibilityState === 'visible'){
+        document.removeEventListener('visibilitychange', una);
+        clearTimeout(esperaVisible);
+        arrancarIntro();
+      }
+    });
+  } else {
+    arrancarIntro();
+  }
+  window.addEventListener('pageshow', function(e){ if(e.persisted) arrancarIntro(); });
+  window.nodojIntro = { repetir: arrancarIntro };
 
 })();
 </script>
